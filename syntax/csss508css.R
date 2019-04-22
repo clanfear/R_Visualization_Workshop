@@ -49,7 +49,7 @@ csss508css <- list(
     "display"="block",
     "margin-left"="auto",
     "margin-right"="auto"),
-  ".title-slide" = list("background-image" = "url(https://clanfear.github.io/R_Visualization_Workshop/img/UWCSSSBG1_white.svg), url(https://clanfear.github.io/R_Visualization_Workshop/img/title_slide_img.png)",
+  ".title-slide" = list("background-image" = "url(https://clanfear.github.io/R_Visualization_Workshop/img/UWTacomaBG1_white.svg), url(https://clanfear.github.io/R_Visualization_Workshop/img/title_slide_img.png)",
                         "background-position" = "center center, center bottom",
                         "background-size" = "contain, contain")
 )
