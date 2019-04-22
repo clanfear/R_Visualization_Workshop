@@ -131,6 +131,7 @@ head(China)
 ## 6 China   Asia       1977    64.0 943455000      741.
 ```
 
+.footnote[If anything done here is unclear, let me know!]
 ---
 class: inverse
 
@@ -188,7 +189,11 @@ The core idea underlying this package is the [**layered grammar of graphics**](h
 ```r
 ggplot(data = China, 
        aes(x = year, y = lifeExp)) +
-    geom_point()
+  geom_point(color = "red", size = 3) +
+  xlab("Year") + 
+  ylab("Life expectancy") +
+  ggtitle("Life expectancy in China") +
+* theme_bw(base_size=18)
 ```
 ]
 ]
