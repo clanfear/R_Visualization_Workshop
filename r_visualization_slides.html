@@ -13,7 +13,7 @@ class: center, top, title-slide
 # R Visualization Workshop
 ## Plotting with <code>ggplot2</code>
 ### Chuck Lanfear
-### Apr 25, 2019<br>Updated: Apr 22, 2019
+### Apr 25, 2019<br>Updated: Apr 23, 2019
 
 ---
 
@@ -138,7 +138,7 @@ class: inverse
 # `ggplot2`
 
 .center[
-&lt;img src="https://github.com/clanfear/CSSS508/raw/master/Lectures/Week2/img/ggplot2unit.jpg" style="width: 60%;"/&gt;
+&lt;img src="img/ggplot2unit.jpg" style="width: 60%;"/&gt;
 ]
 
 ---
@@ -1065,7 +1065,7 @@ ggplot(data = gapminder, aes(x = year, y = lifeExp, group = country)) +
   scale_size_manual(name = "Life Exp. for:", values = c("Country" = 0.25, "Continent" = 3)) +
   theme_minimal(base_size = 14) + ylab("Years") + xlab("") + 
   ggtitle("Life Expectancy, 1952-2007", subtitle = "By continent and country") +
-* theme(axis.text.x = element_text(angle = 45))
+* theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
 ```
 
 ![](r_visualization_slides_files/figure-html/unnamed-chunk-57-1.svg)&lt;!-- --&gt;
@@ -1089,7 +1089,7 @@ ggplot(data = gapminder, aes(x = year, y = lifeExp, group = country)) +
   scale_size_manual(name = "Life Exp. for:", values = c("Country" = 0.25, "Continent" = 3)) +
   theme_minimal(base_size = 14) + ylab("Years") + xlab("") + 
   ggtitle("Life Expectancy, 1952-2007", subtitle = "By continent and country") +
-* theme(legend.position=c(0.75, 0.2), axis.text.x = element_text(angle = 45))
+* theme(legend.position=c(0.85, 0.1), axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
 ```
 
 ![](r_visualization_slides_files/figure-html/unnamed-chunk-58-1.svg)&lt;!-- --&gt;
@@ -1160,7 +1160,7 @@ ggplot(estimated_pes, aes(x = Target, y = PE, group = Reporter)) +
 ---
 
 .center[
-&lt;img src="https://raw.githubusercontent.com/clanfear/CSSS508/master/Lectures/Week2/img/arrest_pe_plot.png" style="width: 80%;"/&gt;
+&lt;img src="img/arrest_pe_plot.png" style="width: 80%;"/&gt;
 ]
 
 ---
@@ -1183,6 +1183,7 @@ class: inverse
 * Affordable in print
 ]
 
+---
 # Things to add
 
 1. More on geom_smooth()
