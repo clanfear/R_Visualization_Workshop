@@ -1129,6 +1129,254 @@ If you didn't manually set font sizes, these will usually come out at a reasonab
 .footnote[[1] I still do this for quick emails of simple plots. Bad me!]
 
 ---
+class: inverse
+# Plotting Model Results
+
+---
+# `geom_smooth()`
+
+I have used `geom_smooth()` in multiple prior examples.
+
+`geom_smooth()` generates "smoothed conditional means" including loess curves and generalized additive models (GAMs).
+
+--
+
+Note, however, that most regression models are conditional mean models, such as ordinary least squares, generalized linear models. 
+
+--
+
+We can use `geom_smooth()` to add a layer depicting common bivariate models.
+
+---
+# Default `geom_smooth()`
+
+
+```r
+ggplot(data = gapminder, 
+       aes(x = year, y = lifeExp, color = continent)) +
+  geom_point(position = position_jitter(1,0), size = 0.5) +
+  geom_smooth()
+```
+
+![](r_visualization_slides_files/figure-html/unnamed-chunk-61-1.svg)&lt;!-- --&gt;
+
+By default, `geom_smooth()` chooses either a loess smoother (N &lt; 1000) or a GAM depending on the number of observations.
+
+
+---
+# Linear `glm`
+
+
+```r
+ggplot(data = gapminder, 
+       aes(x = year, y = lifeExp, color = continent)) +
+  geom_point(position = position_jitter(1,0), size = 0.5) +
+* geom_smooth(method = "glm", formula = y ~ x)
+```
+
+![](r_visualization_slides_files/figure-html/unnamed-chunk-62-1.svg)&lt;!-- --&gt;
+
+We could also fit a standard linear model using either `method = "glm"` or `method = "lm"` and a formula like `y ~ x`.
+---
+# Polynomial `glm`
+
+```r
+ggplot(data = gapminder, 
+       aes(x = year, y = lifeExp, color = continent)) +
+  geom_point(position = position_jitter(1,0), size = 0.5) +
+* geom_smooth(method = "glm", formula = y ~ poly(x, 2))
+```
+
+![](r_visualization_slides_files/figure-html/unnamed-chunk-63-1.svg)&lt;!-- --&gt;
+
+`poly(x, 2)` produces a quadratic model which contains a linear term (`x`) and a quadratic term (`x^2`).
+
+---
+# `ggeffects`
+
+If we want to look at more complex models, we can use `ggeffects` to create and plot tidy 
+*marginal effects*.
+
+That is, tidy dataframes of *ranges* of predicted values that can be
+fed straight into `ggplot2` for plotting model results.
+
+We will focus on two `ggeffects` functions:
+
+* `ggpredict()` - Computes predicted values for the outcome variable at margins of specific variables.
+* `plot.ggeffects()` - A plot method for `ggeffects` objects (like `ggredict()` output)
+
+
+```r
+library(ggeffects)
+```
+
+---
+# Quick Simulated Data
+
+To show off `ggeffects`, I need a data frame with a variety of numeric and categorical variables with strong relationships. It is easiest to just simulate it:
+
+
+```r
+ex_dat &lt;- data.frame(num1 = rnorm(200, 1, 2), 
+                     fac1 = sample(c(1, 2, 3), 200, TRUE),
+                     num2 = rnorm(200, 0, 3),
+                     fac2 = sample(c(1, 2))) %&gt;%
+  mutate(yn = num1 * 0.5 + fac1 * 1.1 + num2 * 0.7 +
+              fac2 - 1.5  + rnorm(200, 0, 2)) %&gt;% 
+  mutate(yb = as.numeric(yn &gt; mean(yn))) %&gt;%
+  mutate(fac1 = factor(fac1, labels = c("A", "B", "C")),
+         fac2 = factor(fac2, labels = c("Yes", "No")))
+```
+
+---
+# `ggpredict()`
+
+When you run  `ggpredict()`, it produces a dataframe with a row for every unique 
+value of a supplied predictor ("independent") variable (`term`). 
+
+Each row contains an expected (estimated) value for the outcome ("dependent") variable, plus confidence intervals. 
+
+
+```r
+lm_1 &lt;- lm(yn ~ num1 + fac1, data = ex_dat)
+lm_1_est &lt;- ggpredict(lm_1, terms = "num1")
+```
+
+If desired, the argument `interval="prediction"` will give predicted intervals instead.
+
+---
+#`ggpredict()` output
+
+.smallish[
+
+```r
+lm_1_est
+```
+
+```
+## 
+## # Predicted values of yn 
+## # x = num1 
+## 
+##   x predicted std.error conf.low conf.high
+##  -4    -0.937     0.628   -2.167     0.293
+##  -2     0.080     0.477   -0.855     1.016
+##   0     1.098     0.380    0.353     1.843
+##   2     2.116     0.379    1.372     2.859
+##   4     3.133     0.475    2.201     4.065
+##   6     4.151     0.625    2.925     5.376
+##   8     5.168     0.799    3.602     6.734
+## 
+## Adjusted for:
+## * fac1 = A
+```
+]
+
+---
+# `plot()` for `ggpredict()`
+
+`ggeffects` features a `plot()` *method*, `plot.ggeffects()`, which produces
+a ggplot when you give `plot()` output from `ggpredict()`.
+
+.small[
+
+```r
+plot(lm_1_est)
+```
+
+![](r_visualization_slides_files/figure-html/unnamed-chunk-68-1.svg)&lt;!-- --&gt;
+]
+
+---
+# Grouping with `ggpredict()`
+
+When using a vector of `terms`, `ggeffects` will plot the first along the x-axis and use
+others for *grouping*. Note we can pipe a model into `ggpredict()`!
+
+.small[
+
+```r
+glm(yb ~ num1 + fac1 + num2 + fac2, data = ex_dat, family=binomial(link = "logit")) %&gt;%
+  ggpredict(terms = c("num1", "fac1")) %&gt;% plot()
+```
+
+![](r_visualization_slides_files/figure-html/unnamed-chunk-69-1.svg)&lt;!-- --&gt;
+]
+
+---
+# Faceting with `ggpredict()`
+
+You can add `facet=TRUE` to the `plot()` call to facet over *grouping terms*.
+
+.small[
+
+```r
+glm(yb ~ num1 + fac1 + num2 + fac2, data = ex_dat, family = binomial(link = "logit")) %&gt;%
+  ggpredict(terms = c("num1", "fac1")) %&gt;% plot(facet=TRUE)
+```
+
+![](r_visualization_slides_files/figure-html/unnamed-chunk-70-1.svg)&lt;!-- --&gt;
+]
+
+---
+# Counterfactual Values
+
+You can add values in square brackets in the `terms=` argument to specify counterfactual values.
+
+.small[
+
+```r
+glm(yb ~ num1 + fac1 + num2 + fac2, data=ex_dat, family=binomial(link="logit")) %&gt;%
+  ggpredict(terms = c("num1 [-1,0,1]", "fac1 [A,B]")) %&gt;% plot(facet=TRUE)
+```
+
+![](r_visualization_slides_files/figure-html/unnamed-chunk-71-1.svg)&lt;!-- --&gt;
+]
+
+---
+# Representative Values
+
+You can also use `[meansd]` or `[minmax]` to set representative values.
+
+.small[
+
+```r
+glm(yb ~ num1 + fac1 + num2 + fac2, data = ex_dat, family = binomial(link = "logit")) %&gt;%
+  ggpredict(terms = c("num1 [meansd]", "num2 [minmax]")) %&gt;% plot(facet=TRUE)
+```
+
+![](r_visualization_slides_files/figure-html/unnamed-chunk-72-1.svg)&lt;!-- --&gt;
+]
+
+---
+# Dot plots with `ggpredict()`
+
+`ggpredict` will produce dot plots with error bars for categorical predictors.
+
+.small[
+
+```r
+lm(yn ~ fac1 + fac2, data = ex_dat) %&gt;% 
+  ggpredict(terms=c("fac1", "fac2")) %&gt;% plot()
+```
+
+![](r_visualization_slides_files/figure-html/unnamed-chunk-73-1.svg)&lt;!-- --&gt;
+]
+
+---
+# Notes on `ggeffects`
+
+There is a lot more to the `ggeffects` package that you can see in [the package vignette](https://cran.r-project.org/web/packages/ggeffects/vignettes/marginaleffects.html)
+and the [github repository](https://github.com/strengejacke/ggeffects). This includes,
+but is not limited to:
+
+* Predicted values for polynomial and interaction terms
+
+* Getting predictions from models from dozens of other packages
+
+* Sending `ggeffects` objects to `ggplot2` to freely modify plots
+
+---
 # Bonus Plot
 
 `ggplot2` is well suited to making complex, publication ready plots.
