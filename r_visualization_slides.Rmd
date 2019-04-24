@@ -1430,6 +1430,4 @@ class: inverse
 ]
 
 ---
-# Things to add
-
-3. histograms
+# Questions
