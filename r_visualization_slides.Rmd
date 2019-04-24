@@ -813,7 +813,17 @@ ggplot(data = gapminder, aes(x = continent, y = year, color = continent)) +
 ```
 ]
 ---
+# Histograms
 
+`ggplot2` uses `geom_histogram()` to produce histograms. This geometry will automatically bin data, but you can adjust the number of bins with `bins =`.
+
+```{r}
+gapminder %>% 
+  ggplot(aes(x = lifeExp, fill = continent)) + 
+  geom_histogram(bins=30)
+```
+
+---
 # Changing the Axes
 
 We can modify the axes in a variety of ways, such as:
@@ -825,7 +835,6 @@ We can modify the axes in a variety of ways, such as:
 * Change where the major/minor breaks are: `scale_x_continuous(breaks =, minor_breaks = )`
 
 ---
-
 # Axis Changes
 
 ```{r, fig.height=3.5, dev='svg'}
@@ -837,7 +846,6 @@ ggplot(data = China, aes(x = year, y = gdpPercap)) +
 ```
 
 ---
-
 # Fonts Too Small?
 
 ```{r, fig.height=3.5, dev='svg'}

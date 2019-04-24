@@ -13,7 +13,7 @@ class: center, top, title-slide
 # R Visualization Workshop
 ## Plotting with <code>ggplot2</code>
 ### Chuck Lanfear
-### Apr 25, 2019<br>Updated: Apr 23, 2019
+### Apr 25, 2019<br>Updated: Apr 24, 2019
 
 ---
 
@@ -738,7 +738,20 @@ ggplot(data = gapminder, aes(x = continent, y = year, color = continent)) +
 ![](r_visualization_slides_files/figure-html/unnamed-chunk-43-1.svg)&lt;!-- --&gt;
 ]
 ---
+# Histograms
 
+`ggplot2` uses `geom_histogram()` to produce histograms. This geometry will automatically bin data, but you can adjust the number of bins with `bins =`.
+
+
+```r
+gapminder %&gt;% 
+  ggplot(aes(x = lifeExp, fill = continent)) + 
+  geom_histogram(bins=30)
+```
+
+![](r_visualization_slides_files/figure-html/unnamed-chunk-44-1.png)&lt;!-- --&gt;
+
+---
 # Changing the Axes
 
 We can modify the axes in a variety of ways, such as:
@@ -750,7 +763,6 @@ We can modify the axes in a variety of ways, such as:
 * Change where the major/minor breaks are: `scale_x_continuous(breaks =, minor_breaks = )`
 
 ---
-
 # Axis Changes
 
 
@@ -762,10 +774,9 @@ ggplot(data = China, aes(x = year, y = gdpPercap)) +
     xlim(1940, 2010) + ggtitle("Chinese GDP per capita")
 ```
 
-![](r_visualization_slides_files/figure-html/unnamed-chunk-44-1.svg)&lt;!-- --&gt;
+![](r_visualization_slides_files/figure-html/unnamed-chunk-45-1.svg)&lt;!-- --&gt;
 
 ---
-
 # Fonts Too Small?
 
 
@@ -776,7 +787,7 @@ ggplot(data = China, aes(x = year, y = lifeExp)) +
 *   theme_gray(base_size = 20)
 ```
 
-![](r_visualization_slides_files/figure-html/unnamed-chunk-45-1.svg)&lt;!-- --&gt;
+![](r_visualization_slides_files/figure-html/unnamed-chunk-46-1.svg)&lt;!-- --&gt;
 
 ---
 
@@ -821,7 +832,7 @@ lifeExp_by_year +
                "Asia" = "royalblue", "Europe" = "violetred1", "Oceania" = "yellow"))
 ```
 
-![](r_visualization_slides_files/figure-html/unnamed-chunk-46-1.svg)&lt;!-- --&gt;
+![](r_visualization_slides_files/figure-html/unnamed-chunk-47-1.svg)&lt;!-- --&gt;
 ]
 ---
 
@@ -869,7 +880,7 @@ Wow, there's a lot going on here!
   #
 ```
 
-![](r_visualization_slides_files/figure-html/unnamed-chunk-48-1.svg)&lt;!-- --&gt;
+![](r_visualization_slides_files/figure-html/unnamed-chunk-49-1.svg)&lt;!-- --&gt;
 ]
 
 ---
@@ -892,7 +903,7 @@ ggplot(data = gapminder, aes(x = year, y = lifeExp, group = country)) +
   #
 ```
 
-![](r_visualization_slides_files/figure-html/unnamed-chunk-49-1.svg)&lt;!-- --&gt;
+![](r_visualization_slides_files/figure-html/unnamed-chunk-50-1.svg)&lt;!-- --&gt;
 ]
 ---
 count: false
@@ -914,7 +925,7 @@ ggplot(data = gapminder, aes(x = year, y = lifeExp, group = country)) +
   #
 ```
 
-![](r_visualization_slides_files/figure-html/unnamed-chunk-50-1.svg)&lt;!-- --&gt;
+![](r_visualization_slides_files/figure-html/unnamed-chunk-51-1.svg)&lt;!-- --&gt;
 ]
 ---
 count: false
@@ -936,7 +947,7 @@ ggplot(data = gapminder, aes(x = year, y = lifeExp, group = country)) +
   #
 ```
 
-![](r_visualization_slides_files/figure-html/unnamed-chunk-51-1.svg)&lt;!-- --&gt;
+![](r_visualization_slides_files/figure-html/unnamed-chunk-52-1.svg)&lt;!-- --&gt;
 ]
 ---
 count: false
@@ -958,7 +969,7 @@ ggplot(data = gapminder, aes(x = year, y = lifeExp, group = country)) +
   #
 ```
 
-![](r_visualization_slides_files/figure-html/unnamed-chunk-52-1.svg)&lt;!-- --&gt;
+![](r_visualization_slides_files/figure-html/unnamed-chunk-53-1.svg)&lt;!-- --&gt;
 ]
 ---
 count: false
@@ -979,7 +990,7 @@ ggplot(data = gapminder, aes(x = year, y = lifeExp, group = country)) +
   #
 ```
 
-![](r_visualization_slides_files/figure-html/unnamed-chunk-53-1.svg)&lt;!-- --&gt;
+![](r_visualization_slides_files/figure-html/unnamed-chunk-54-1.svg)&lt;!-- --&gt;
 ]
 ---
 count: false
@@ -1001,7 +1012,7 @@ ggplot(data = gapminder, aes(x = year, y = lifeExp, group = country)) +
   #
 ```
 
-![](r_visualization_slides_files/figure-html/unnamed-chunk-54-1.svg)&lt;!-- --&gt;
+![](r_visualization_slides_files/figure-html/unnamed-chunk-55-1.svg)&lt;!-- --&gt;
 ]
 
 ---
@@ -1024,7 +1035,7 @@ ggplot(data = gapminder, aes(x = year, y = lifeExp, group = country)) +
   #
 ```
 
-![](r_visualization_slides_files/figure-html/unnamed-chunk-55-1.svg)&lt;!-- --&gt;
+![](r_visualization_slides_files/figure-html/unnamed-chunk-56-1.svg)&lt;!-- --&gt;
 ]
 ---
 count: false
@@ -1046,7 +1057,7 @@ ggplot(data = gapminder, aes(x = year, y = lifeExp, group = country)) +
   #
 ```
 
-![](r_visualization_slides_files/figure-html/unnamed-chunk-56-1.svg)&lt;!-- --&gt;
+![](r_visualization_slides_files/figure-html/unnamed-chunk-57-1.svg)&lt;!-- --&gt;
 ]
 ---
 count: false
@@ -1068,7 +1079,7 @@ ggplot(data = gapminder, aes(x = year, y = lifeExp, group = country)) +
 * theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
 ```
 
-![](r_visualization_slides_files/figure-html/unnamed-chunk-57-1.svg)&lt;!-- --&gt;
+![](r_visualization_slides_files/figure-html/unnamed-chunk-58-1.svg)&lt;!-- --&gt;
 ]
 
 .footnote[Note: Fewer values might be better than angled labels!]
@@ -1092,13 +1103,13 @@ ggplot(data = gapminder, aes(x = year, y = lifeExp, group = country)) +
 * theme(legend.position=c(0.85, 0.1), axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
 ```
 
-![](r_visualization_slides_files/figure-html/unnamed-chunk-58-1.svg)&lt;!-- --&gt;
+![](r_visualization_slides_files/figure-html/unnamed-chunk-59-1.svg)&lt;!-- --&gt;
 ]
 ---
 
 ## Fussy Manual Legend
 
-![](r_visualization_slides_files/figure-html/unnamed-chunk-59-1.svg)&lt;!-- --&gt;
+![](r_visualization_slides_files/figure-html/unnamed-chunk-60-1.svg)&lt;!-- --&gt;
 
 Observation: One could use `filter()` to identify the countries with dips in life expectancy and investigate.
 
@@ -1158,7 +1169,7 @@ ggplot(data = gapminder,
   geom_smooth()
 ```
 
-![](r_visualization_slides_files/figure-html/unnamed-chunk-61-1.svg)&lt;!-- --&gt;
+![](r_visualization_slides_files/figure-html/unnamed-chunk-62-1.svg)&lt;!-- --&gt;
 
 By default, `geom_smooth()` chooses either a loess smoother (N &lt; 1000) or a GAM depending on the number of observations.
 
@@ -1174,7 +1185,7 @@ ggplot(data = gapminder,
 * geom_smooth(method = "glm", formula = y ~ x)
 ```
 
-![](r_visualization_slides_files/figure-html/unnamed-chunk-62-1.svg)&lt;!-- --&gt;
+![](r_visualization_slides_files/figure-html/unnamed-chunk-63-1.svg)&lt;!-- --&gt;
 
 We could also fit a standard linear model using either `method = "glm"` or `method = "lm"` and a formula like `y ~ x`.
 ---
@@ -1187,7 +1198,7 @@ ggplot(data = gapminder,
 * geom_smooth(method = "glm", formula = y ~ poly(x, 2))
 ```
 
-![](r_visualization_slides_files/figure-html/unnamed-chunk-63-1.svg)&lt;!-- --&gt;
+![](r_visualization_slides_files/figure-html/unnamed-chunk-64-1.svg)&lt;!-- --&gt;
 
 `poly(x, 2)` produces a quadratic model which contains a linear term (`x`) and a quadratic term (`x^2`).
 
@@ -1259,13 +1270,13 @@ lm_1_est
 ## # x = num1 
 ## 
 ##   x predicted std.error conf.low conf.high
-##  -4    -0.937     0.628   -2.167     0.293
-##  -2     0.080     0.477   -0.855     1.016
-##   0     1.098     0.380    0.353     1.843
-##   2     2.116     0.379    1.372     2.859
-##   4     3.133     0.475    2.201     4.065
-##   6     4.151     0.625    2.925     5.376
-##   8     5.168     0.799    3.602     6.734
+##  -4    -0.732     0.697   -2.097     0.633
+##  -2    -0.094     0.521   -1.114     0.927
+##   0     0.545     0.398   -0.235     1.325
+##   2     1.183     0.384    0.431     1.935
+##   4     1.822     0.487    0.867     2.776
+##   6     2.460     0.655    1.177     3.744
+##   8     3.099     0.849    1.434     4.764
 ## 
 ## Adjusted for:
 ## * fac1 = A
@@ -1284,7 +1295,7 @@ a ggplot when you give `plot()` output from `ggpredict()`.
 plot(lm_1_est)
 ```
 
-![](r_visualization_slides_files/figure-html/unnamed-chunk-68-1.svg)&lt;!-- --&gt;
+![](r_visualization_slides_files/figure-html/unnamed-chunk-69-1.svg)&lt;!-- --&gt;
 ]
 
 ---
@@ -1300,7 +1311,7 @@ glm(yb ~ num1 + fac1 + num2 + fac2, data = ex_dat, family=binomial(link = "logit
   ggpredict(terms = c("num1", "fac1")) %&gt;% plot()
 ```
 
-![](r_visualization_slides_files/figure-html/unnamed-chunk-69-1.svg)&lt;!-- --&gt;
+![](r_visualization_slides_files/figure-html/unnamed-chunk-70-1.svg)&lt;!-- --&gt;
 ]
 
 ---
@@ -1315,7 +1326,7 @@ glm(yb ~ num1 + fac1 + num2 + fac2, data = ex_dat, family = binomial(link = "log
   ggpredict(terms = c("num1", "fac1")) %&gt;% plot(facet=TRUE)
 ```
 
-![](r_visualization_slides_files/figure-html/unnamed-chunk-70-1.svg)&lt;!-- --&gt;
+![](r_visualization_slides_files/figure-html/unnamed-chunk-71-1.svg)&lt;!-- --&gt;
 ]
 
 ---
@@ -1330,7 +1341,7 @@ glm(yb ~ num1 + fac1 + num2 + fac2, data=ex_dat, family=binomial(link="logit")) 
   ggpredict(terms = c("num1 [-1,0,1]", "fac1 [A,B]")) %&gt;% plot(facet=TRUE)
 ```
 
-![](r_visualization_slides_files/figure-html/unnamed-chunk-71-1.svg)&lt;!-- --&gt;
+![](r_visualization_slides_files/figure-html/unnamed-chunk-72-1.svg)&lt;!-- --&gt;
 ]
 
 ---
@@ -1345,7 +1356,7 @@ glm(yb ~ num1 + fac1 + num2 + fac2, data = ex_dat, family = binomial(link = "log
   ggpredict(terms = c("num1 [meansd]", "num2 [minmax]")) %&gt;% plot(facet=TRUE)
 ```
 
-![](r_visualization_slides_files/figure-html/unnamed-chunk-72-1.svg)&lt;!-- --&gt;
+![](r_visualization_slides_files/figure-html/unnamed-chunk-73-1.svg)&lt;!-- --&gt;
 ]
 
 ---
@@ -1360,7 +1371,7 @@ lm(yn ~ fac1 + fac2, data = ex_dat) %&gt;%
   ggpredict(terms=c("fac1", "fac2")) %&gt;% plot()
 ```
 
-![](r_visualization_slides_files/figure-html/unnamed-chunk-73-1.svg)&lt;!-- --&gt;
+![](r_visualization_slides_files/figure-html/unnamed-chunk-74-1.svg)&lt;!-- --&gt;
 ]
 
 ---
@@ -1434,10 +1445,7 @@ class: inverse
 ---
 # Things to add
 
-1. More on geom_smooth()
-2. Sankey diagrams?
 3. histograms
-4. Model results with ggeffects
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
