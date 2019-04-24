@@ -746,7 +746,7 @@ ggplot(data = gapminder, aes(x = continent, y = year, color = continent)) +
 ```r
 gapminder %&gt;% 
   ggplot(aes(x = lifeExp, fill = continent)) + 
-  geom_histogram(bins=30)
+  geom_histogram(bins = 30)
 ```
 
 ![](r_visualization_slides_files/figure-html/unnamed-chunk-44-1.svg)&lt;!-- --&gt;
@@ -1270,14 +1270,13 @@ lm_1_est
 ## # x = num1 
 ## 
 ##   x predicted std.error conf.low conf.high
-##  -6    -2.453     0.694   -3.813    -1.093
-##  -4    -1.311     0.539   -2.367    -0.254
-##  -2    -0.168     0.406   -0.964     0.627
-##   0     0.974     0.322    0.342     1.606
-##   2     2.116     0.329    1.472     2.760
-##   4     3.258     0.420    2.434     4.083
-##   6     4.401     0.557    3.309     5.493
-##   8     5.543     0.714    4.145     6.942
+##  -4    -1.168     0.618   -2.380     0.043
+##  -2    -0.308     0.478   -1.245     0.629
+##   0     0.552     0.395   -0.222     1.326
+##   2     1.412     0.406    0.617     2.208
+##   4     2.273     0.505    1.283     3.262
+##   6     3.133     0.653    1.853     4.413
+##   8     3.993     0.824    2.378     5.609
 ## 
 ## Adjusted for:
 ## * fac1 = A

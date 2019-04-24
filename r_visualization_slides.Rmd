@@ -817,10 +817,10 @@ ggplot(data = gapminder, aes(x = continent, y = year, color = continent)) +
 
 `ggplot2` uses `geom_histogram()` to produce histograms. This geometry will automatically bin data, but you can adjust the number of bins with `bins =`.
 
-```{r, fig.height=4, dev='svg'}
+```{r, fig.height=3.25, dev='svg'}
 gapminder %>% 
   ggplot(aes(x = lifeExp, fill = continent)) + 
-  geom_histogram(bins=30)
+  geom_histogram(bins = 30)
 ```
 
 ---
