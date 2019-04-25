@@ -12,8 +12,8 @@ layout: default
 * [.R Script to follow along](https://raw.githubusercontent.com/clanfear/R_Visualization_Workshop/master/r_visualization_script.R) (Save as to download)
 * [R and RStudio Installation Instructions](https://clanfear.github.io/CSSS508/docs/installation.html)
 * [Enabling compilation of packages](https://clanfear.github.io/CSSS508/docs/compiling.html)
-* Panopto Recording of Workshop - Posted after workshop
-* YouTube Recording of Workshop - Posted after workshop
+* [Panopto Recording of Workshop](https://uw.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=f271adad-1792-4213-95c3-aa3a013a2c4d)
+* [YouTube Recording of Workshop](https://youtu.be/g2jUfESoPm4)
 
 ## General R Resources:
 
