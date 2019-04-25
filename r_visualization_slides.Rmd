@@ -715,7 +715,7 @@ count: false
 
 # Plotting All Countries
 
-### 7: Facets
+### 7: Text Size
 .pull-left[
  .small[
 ```{r, fig.height=4, dev='svg', eval=FALSE}
