@@ -2,7 +2,7 @@
 title: "R Visualization Workshop"
 subtitle: "Plotting with `ggplot2`"
 author: "Chuck Lanfear"
-date: "Apr 25, 2019<br>Updated: `r gsub(' 0', ' ', format(Sys.Date(), format='%b %d, %Y'))`"
+date: "May 4, 2019<br>Updated: `r gsub(' 0', ' ', format(Sys.Date(), format='%b %d, %Y'))`"
 output:
   xaringan::moon_reader:
     lib_dir: libs
